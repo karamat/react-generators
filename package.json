@@ -1,0 +1,16 @@
+{
+  "name": "react_generators",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "plop --plopfile Generators/plopfile.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-plop": "^0.9.0",
+    "plop": "^1.9.1"
+  }
+}

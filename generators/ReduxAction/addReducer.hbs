@@ -1,0 +1,17 @@
+
+{{#if wantRequestActions}}
+
+export const {{ camelCase actionName }}Request = (state, action) =>
+  state.merge({ requesting: true, error: null })
+
+export const {{ camelCase actionName }}Success = (state, action) =>
+  state.merge({ requesting: false, error: null })
+
+export const {{ camelCase actionName }}Failure = (state, { error }) =>
+  state.merge({ requesting: false, error })
+
+// add new reducer here{{else}}
+export const {{ camelCase actionName }} = (state, action) =>
+  state.merge({})
+
+// add new reducer here{{/if}}

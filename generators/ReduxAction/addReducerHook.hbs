@@ -1,0 +1,8 @@
+{{#if wantRequestActions}}
+
+  [Types.{{ constantCase actionName }}_REQUEST]: {{ camelCase actionName }}Request,
+  [Types.{{ constantCase actionName }}_SUCCESS]: {{ camelCase actionName }}Success,
+  [Types.{{ constantCase actionName }}_FAILURE]: {{ camelCase actionName }}Failure,
+  // add reducer hook up here{{else}}
+  [Types.{{ constantCase actionName }}]: {{ camelCase actionName }},
+  // add reducer hook up here{{/if}}

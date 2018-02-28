@@ -1,0 +1,53 @@
+/**
+*
+* {{ properCase name }}
+*
+*/
+
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
+// import get from 'lodash/get'
+import { View, ScrollView, Modal } from 'react-native'
+import { Content, Button, Text } from 'native-base'
+import { Container } from '../../../Components'
+import styles from './styles'
+
+class {{ properCase name }} extends Component {
+  static propTypes = {
+  }
+
+  render() {
+    return (
+      <Container>
+        <Content>
+          <ScrollView>
+            <View style={styles.screenBody}>
+              <View style={styles.bodyTop}>
+                <Text>
+                  {{ properCase name }}
+                </Text>
+              </View>
+              <View style={styles.bodyBottom}>
+                <Button primary style={styles.nextButton}>
+                  <Text style={styles.nextButtonText}>NEXT</Text>
+                </Button>
+              </View>
+            </View>
+          </ScrollView>
+        </Content>
+      </Container>
+    );
+  }
+}
+
+const mapStateToProps = createStructuredSelector({
+  state: (state) => state,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatch,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)({{ properCase name }})

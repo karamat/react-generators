@@ -1,0 +1,8 @@
+{{#if wantRequestActions}}
+
+  {{ camelCase actionName }}Request: ['payload', 'resolve', 'reject'],
+  {{ camelCase actionName }}Success: null,
+  {{ camelCase actionName }}Failure: ['error'],
+  // add action here{{else}}
+  {{ camelCase actionName }}: null,
+  // add action here{{/if}}
