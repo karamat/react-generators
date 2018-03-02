@@ -1,14 +1,14 @@
 const path = require('path');
-const projectPath = './'
+const projectPath = '/' //Absolute path to your project's Root
 
-const componentsDir = path.join(__dirname, projectPath, 'app/components')
-// const containersDir = path.join(__dirname, projectPath, 'app/containers')
-const containersDir = path.join(__dirname, projectPath, 'App/Containers/SignupScreens')
+const componentsDir = path.join(projectPath, 'App/components')
+// const containersDir = path.join(projectPath, 'app/containers')
+const containersDir = path.join(projectPath, 'App/Containers/SignupScreens')
 
-// const reduxDir = path.join(__dirname, projectPath, 'app/redux')
-const reduxDir = path.join(__dirname, projectPath, 'App/Redux')
-const sagasDir = path.join(__dirname, projectPath, 'App/Sagas')
-const apiDir = path.join(__dirname, projectPath, 'app/services')
+// const reduxDir = path.join(projectPath, 'app/redux')
+const reduxDir = path.join(projectPath, 'App/Redux')
+const sagasDir = path.join(projectPath, 'App/Sagas')
+const apiDir = path.join(projectPath, 'App/services')
 
 module.exports = {
   componentsDir,
