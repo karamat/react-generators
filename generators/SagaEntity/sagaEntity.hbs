@@ -1,8 +1,7 @@
-import { AsyncStorage } from 'react-native'
 import { call, put } from 'redux-saga/effects'
 import get from 'lodash/get'
-import Actions from '../Redux/Actions'
-import { selectToken } from '../Lib/Auth'
+import Actions from '../reduxApp/actions'
+import { getAuthHeaders } from './Shared'
 
 // ADD_SAGA_ACTION
 
