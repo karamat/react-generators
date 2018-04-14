@@ -9,6 +9,8 @@ const { customModify, regex, trimFile, getReduxStates,
   getContainers } = require('../Utils')
 const { reduxDir, containersDir } = require('../../')
 
+const trimFileFunc = (file) => trimFile(__dirname, file)
+
 module.exports = {
   description: 'Add redux state to container props',
   prompts: [{
@@ -78,7 +80,7 @@ module.exports = {
     const mapStateToProps = customModify(data, {
       path: containerFile,
       pattern: new RegExp(regex.mapStateToProps, 'g'),
-      template: trimFile(__dirname, './mapStateToProps.hbs'),
+      template: trimFileFunc('./mapStateToProps.hbs'),
       dataMapping: {
         retainPattern: 'statePattern',
       },
@@ -88,7 +90,7 @@ module.exports = {
     const propTypes = customModify(data, {
       path: containerFile,
       pattern: new RegExp(regex.propTypes, 'g'),
-      template: trimFile(__dirname, './propTypes.hbs'),
+      template: trimFileFunc('./propTypes.hbs'),
       dataMapping: {
         retainPattern: 'propTypePattern',
         state: data.actionName,

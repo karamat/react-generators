@@ -9,6 +9,8 @@ const { customModify, regex, trimFile, getReduxEntities,
   getContainers } = require('../Utils')
 const { reduxDir, containersDir } = require('../../')
 
+const trimFileFunc = (file) => trimFile(__dirname, file)
+
 module.exports = {
   description: 'Add a redux action',
   prompts: [{
@@ -60,17 +62,17 @@ module.exports = {
       type: 'modify',
       path: `${reduxDir}/{{reduxFileName}}.js`,
       pattern: /(\s*\/\/\sadd action here)/g,
-      template: trimFile(__dirname, 'addAction.hbs'),
+      template: trimFileFunc('addAction.hbs'),
     }, {
       type: 'modify',
       path: `${reduxDir}/{{reduxFileName}}.js`,
       pattern: /(\s*\/\/\sadd new reducer here)/g,
-      template: trimFile(__dirname, 'addReducer.hbs'),
+      template: trimFileFunc('addReducer.hbs'),
     }, {
       type: 'modify',
       path: `${reduxDir}/{{reduxFileName}}.js`,
       pattern: /(\s*\/\/\sadd reducer hook up here)/g,
-      template: trimFile(__dirname, 'addReducerHook.hbs'),
+      template: trimFileFunc('addReducerHook.hbs'),
     }]
 
 
@@ -82,7 +84,7 @@ module.exports = {
     const mapActionToProps = customModify(data, {
       path: containerFile,
       pattern: new RegExp(regex.mapActionToProps, 'g'),
-      template: trimFile(__dirname, actionTemplate),
+      template: trimFileFunc(actionTemplate),
       dataMapping: {
         retainPattern: 'actionPattern',
         actionName: data.actionName,
@@ -94,7 +96,7 @@ module.exports = {
     const propTypes = customModify(data, {
       path: containerFile,
       pattern: new RegExp(regex.propTypes, 'g'),
-      template: trimFile(__dirname, './propTypes.hbs'),
+      template: trimFileFunc('./propTypes.hbs'),
       dataMapping: {
         retainPattern: 'propTypePattern',
         state: data.actionName,
