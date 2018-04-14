@@ -1,0 +1,21 @@
+const componentGenerator = require('./Component/index.js')
+const containerGenerator = require('./Container/index.js')
+const reduxInitGenerator = require('./ReduxInit/index.js')
+const reduxEntityGenerator = require('./ReduxEntity/index.js')
+const reduxActionGenerator = require('./ReduxAction/index.js')
+const sagasInitGenerator = require('./SagasInit/index.js')
+const sagaEntityGenerator = require('./SagaEntity/index.js')
+const sagaActionGenerator = require('./SagaAction/index.js')
+const stateToPropsGenerator = require('./StateToProps/index.js')
+
+module.exports = (plop) => {
+  plop.setGenerator('component', componentGenerator)
+  plop.setGenerator('container', containerGenerator)
+  plop.setGenerator('redux init', reduxInitGenerator)
+  plop.setGenerator('redux entity', reduxEntityGenerator)
+  plop.setGenerator('redux action', reduxActionGenerator)
+  plop.setGenerator('sagas init', sagasInitGenerator)
+  plop.setGenerator('saga entity', sagaEntityGenerator)
+  plop.setGenerator('saga action', sagaActionGenerator)
+  plop.setGenerator('state to props', stateToPropsGenerator)
+}
