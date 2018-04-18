@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const { each, map, filter } = require('lodash');
-const { reduxDir, containersDir } = require('../../')
+const { reduxDir, containersDir } = require('../')
 
 const regex = {
   import: 'import\\s.*\\sfrom\\s.*\\n\\n',

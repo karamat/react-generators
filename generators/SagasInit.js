@@ -4,7 +4,7 @@
 
 'use strict';
 
-const { sagasDir, apiDir } = require('../../')
+const { sagasDir, apiDir } = require('../')
 
 
 module.exports = {
@@ -14,22 +14,22 @@ module.exports = {
     const actions = [{
       type: 'add',
       path: `${sagasDir}/index.js`,
-      templateFile: './SagasInit/index.js.hbs',
+      templateFile: '../templates/default/SagasInit/index.js.hbs',
       abortOnFail: true,
     }, {
       type: 'add',
       path: `${apiDir}/api.js`,
-      templateFile: './SagasInit/api.js.hbs',
+      templateFile: '../templates/default/SagasInit/api.js.hbs',
       abortOnFail: true,
     }, {
       type: 'add',
       path: `${apiDir}/FixtureApi.js`,
-      templateFile: './SagasInit/FixtureApi.js.hbs',
+      templateFile: '../templates/default/SagasInit/FixtureApi.js.hbs',
       abortOnFail: true,
     }, {
       type: 'add',
       path: `${apiDir}/DebugConfig.js`,
-      templateFile: './SagasInit/DebugConfig.js.hbs',
+      templateFile: '../templates/default/SagasInit/DebugConfig.js.hbs',
       abortOnFail: true,
     }]
     return actions
