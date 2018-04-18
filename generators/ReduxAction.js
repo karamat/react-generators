@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const { customModify, regex, trimFile, getReduxEntities,
   getContainers } = require('../Utils')
-const { reduxDir, containersDir } = require('../../')
+const { reduxDir, containersDir } = require('../')
 
 const trimFileFunc = (file) => trimFile(__dirname, file)
 
