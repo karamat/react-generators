@@ -1,3 +1,4 @@
 - add import with de-structure
 - redux entity reducer is being added
 - add support to configure multiple projects with different settings and templates
+- fix issue with reduxEntity reducer generator

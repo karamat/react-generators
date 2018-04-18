@@ -1,15 +1,17 @@
 /**
- * Redux Entity Generator
-//  */
-//
-// 'use strict';
+ * Redux Action Generator
+*/
+
+'use strict';
 const fs = require('fs');
 const path = require('path');
 const { customModify, regex, trimFile, getReduxEntities,
-  getContainers } = require('../Utils')
+  getContainers } = require('../utils')
 const { reduxDir, containersDir } = require('../')
 
-const trimFileFunc = (file) => trimFile(__dirname, file)
+const templateDir = path.join(__dirname, '../templates/default/ReduxAction/');
+const trimFileFunc = (file) => trimFile(templateDir, file);
+
 
 module.exports = {
   description: 'Add a redux action',

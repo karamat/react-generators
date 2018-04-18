@@ -5,12 +5,11 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const { sagasDir, apiDir } = require('../../')
+const { trimFile } = require('../utils')
+const { sagasDir, apiDir } = require('../');
 
-function trimTemplateFile(template) {
-  // Loads the template file and trims the whitespace and then returns the content as a string.
-  return fs.readFileSync(path.join(__dirname, `./${template}`), 'utf8').replace(/\s*$/, '');
-}
+const templateDir = path.join(__dirname, '../templates/default/SagaAction/');
+const trimFileFunc = (file) => trimFile(templateDir, file);
 
 module.exports = {
   description: 'Add a saga action',
@@ -57,27 +56,27 @@ module.exports = {
       type: 'modify',
       path: `${sagasDir}/{{sagaFileName}}.js`,
       pattern: /(\/\/\sADD_SAGA_ACTION)/g,
-      template: trimTemplateFile('sagaAction.hbs'),
+      template: trimFileFunc('sagaAction.hbs'),
     }, {
       type: 'modify',
       path: `${sagasDir}/{{sagaFileName}}.js`,
       pattern: /(\s*\/\/\sEXPORT_SAGA_ACTION)/g,
-      template: trimTemplateFile('exportAction.hbs'),
+      template: trimFileFunc('exportAction.hbs'),
     }, {
       type: 'modify',
       path: `${sagasDir}/index.js`,
       pattern: /(\s*\/\/\sREGISTRER_SAGA)/g,
-      template: trimTemplateFile('registerSaga.hbs'),
+      template: trimFileFunc('registerSaga.hbs'),
     }, {
       type: 'modify',
       path: `${apiDir}/Api.js`,
       pattern: /(\s*\/\/\sADD_API_HANDLER)/g,
-      template: trimTemplateFile('apiHandler.hbs'),
+      template: trimFileFunc('apiHandler.hbs'),
     }, {
       type: 'modify',
       path: `${apiDir}/Api.js`,
       pattern: /(\s*\/\/\sEXPORT_API_HANDLER)/g,
-      template: trimTemplateFile('exportApiHandler.hbs'),
+      template: trimFileFunc('exportApiHandler.hbs'),
     }]
     return actions
   },

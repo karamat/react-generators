@@ -5,12 +5,11 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const { reduxDir } = require('../../')
+const { reduxDir } = require('../');
+const { trimFile } = require('../utils');
 
-function trimTemplateFile(template) {
-  // Loads the template file and trims the whitespace and then returns the content as a string.
-  return fs.readFileSync(path.join(__dirname, `./${template}`), 'utf8').replace(/\s*$/, '');
-}
+const templateDir = path.join(__dirname, '../templates/default/ReduxEntity/');
+const trimFileFunc = (file) => trimFile(templateDir, file);
 
 module.exports = {
   description: 'Add a redux entity',
@@ -30,33 +29,33 @@ module.exports = {
     const actions = [{
       type: 'add',
       path: `${reduxDir}/{{properCase name}}Redux.js`,
-      templateFile: './ReduxEntity/reduxEntity.hbs',
+      templateFile: '../templates/default/ReduxEntity/reduxEntity.hbs',
       abortOnFail: true,
     }, {
       type: 'modify',
       path: `${reduxDir}/index.js`,
       pattern: /(,\n\s+\/\/.*ADD_REDUX_REDUCER\n}\))/g,
-      template: trimTemplateFile('reducer.hbs'),
+      template: trimFileFunc('reducer.hbs'),
     }, {
       type: 'modify',
       path: `${reduxDir}/Actions.js`,
       pattern: /(\/\/\sADD_IMPORT)/g,
-      template: trimTemplateFile('actionImport.hbs'),
+      template: trimFileFunc('actionImport.hbs'),
     }, {
       type: 'modify',
       path: `${reduxDir}/Actions.js`,
       pattern: /(\/\/\sADD_ACTIONS)/g,
-      template: trimTemplateFile('addActions.hbs'),
+      template: trimFileFunc('addActions.hbs'),
     }, {
       type: 'modify',
       path: `${reduxDir}/ActionTypes.js`,
       pattern: /(\/\/\sADD_IMPORT)/g,
-      template: trimTemplateFile('actionTypeImport.hbs'),
+      template: trimFileFunc('actionTypeImport.hbs'),
     }, {
       type: 'modify',
       path: `${reduxDir}/ActionTypes.js`,
       pattern: /(\/\/\sADD_ACTION_TYPE)/g,
-      template: trimTemplateFile('addActionTypes.hbs'),
+      template: trimFileFunc('addActionTypes.hbs'),
     }]
     return actions
   },

@@ -6,10 +6,11 @@
 const fs = require('fs');
 const path = require('path');
 const { customModify, regex, trimFile, getReduxStates,
-  getContainers } = require('../Utils')
-const { reduxDir, containersDir } = require('../../')
+  getContainers } = require('../utils')
+const { reduxDir, containersDir } = require('../')
 
-const trimFileFunc = (file) => trimFile(__dirname, file)
+const templateDir = path.join(__dirname, '../templates/default/StateToProps/');
+const trimFileFunc = (file) => trimFile(templateDir, file);
 
 module.exports = {
   description: 'Add redux state to container props',
