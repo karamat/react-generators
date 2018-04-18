@@ -4,7 +4,7 @@
 
 'use strict';
 
-const { componentsDir } = require('../../')
+const { componentsDir } = require('../')
 
 module.exports = {
   description: 'Add a component',
@@ -24,12 +24,12 @@ module.exports = {
     const actions = [{
       type: 'add',
       path: `${componentsDir}/{{properCase name}}/index.js`,
-      templateFile: './Component/es6.js.hbs',
+      templateFile: '../templates/default/Component/es6.js.hbs',
       abortOnFail: true,
     }, {
       type: 'add',
       path: `${componentsDir}/{{properCase name}}/styles.js`,
-      templateFile: './Component/styles.js.hbs',
+      templateFile: '../templates/default/Component/styles.js.hbs',
       abortOnFail: true,
     }]
     return actions
