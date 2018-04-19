@@ -4,7 +4,13 @@
 
 'use strict';
 
-const { componentsDir } = require('../')
+const path = require('path');
+const { componentsDir } = require('../');
+const { templatesDirectory } = require('../config');
+
+function getTemplateFile(file) {
+  return path.join(templatesDirectory, 'Component', file)
+}
 
 module.exports = {
   description: 'Add a component',
@@ -24,12 +30,12 @@ module.exports = {
     const actions = [{
       type: 'add',
       path: `${componentsDir}/{{properCase name}}/index.js`,
-      templateFile: '../templates/default/Component/es6.js.hbs',
+      templateFile: getTemplateFile('es6.js.hbs'),
       abortOnFail: true,
     }, {
       type: 'add',
       path: `${componentsDir}/{{properCase name}}/styles.js`,
-      templateFile: '../templates/default/Component/styles.js.hbs',
+      templateFile: getTemplateFile('styles.js.hbs'),
       abortOnFail: true,
     }]
     return actions
