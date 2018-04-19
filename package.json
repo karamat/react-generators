@@ -1,13 +1,13 @@
 {
   "name": "react_generators",
   "version": "1.0.0",
-  "description": "",
+  "description": "Generators for React, Redux and Redux-saga",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "plop --plopfile Generators/plopfile.js"
+    "generate": "plop --plopfile generators/plopfile.js"
   },
-  "author": "",
+  "author": "Karamat Ullah",
   "license": "ISC",
   "dependencies": {
     "node-plop": "^0.9.0",
