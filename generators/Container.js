@@ -4,7 +4,10 @@
 
 'use strict';
 
-const { containersDir } = require('../')
+const { makeSubFolderPath, getTemplateFile } = require('../utils');
+
+const containersPath = makeSubFolderPath('default', 'containersPath')
+const getTemplate = (template) => getTemplateFile('Container', template);
 
 module.exports = {
   description: 'Add a container',
@@ -23,13 +26,13 @@ module.exports = {
   actions: (data) => {
     const actions = [{
       type: 'add',
-      path: `${containersDir}/{{properCase name}}/index.js`,
-      templateFile: '../templates/default/Container/es6.js.hbs',
+      path: `${containersPath}/{{properCase name}}/index.js`,
+      templateFile: getTemplate('es6.js.hbs'),
       abortOnFail: true,
     }, {
       type: 'add',
-      path: `${containersDir}/{{properCase name}}/styles.js`,
-      templateFile: '../templates/default/Container/styles.js.hbs',
+      path: `${containersPath}/{{properCase name}}/styles.js`,
+      templateFile: getTemplate('styles.js.hbs'),
       abortOnFail: true,
     }]
     return actions

@@ -4,13 +4,10 @@
 
 'use strict';
 
-const path = require('path');
-const { componentsDir } = require('../');
-const { templatesDirectory } = require('../config');
+const { makeSubFolderPath, getTemplateFile } = require('../utils');
 
-function getTemplateFile(file) {
-  return path.join(templatesDirectory, 'Component', file)
-}
+const componentsPath = makeSubFolderPath('default', 'componentsPath')
+const getTemplate = (template) => getTemplateFile('Component', template);
 
 module.exports = {
   description: 'Add a component',
@@ -29,13 +26,13 @@ module.exports = {
   actions: (data) => {
     const actions = [{
       type: 'add',
-      path: `${componentsDir}/{{properCase name}}/index.js`,
-      templateFile: getTemplateFile('es6.js.hbs'),
+      path: `${componentsPath}/{{properCase name}}/index.js`,
+      templateFile: getTemplate('es6.js.hbs'),
       abortOnFail: true,
     }, {
       type: 'add',
-      path: `${componentsDir}/{{properCase name}}/styles.js`,
-      templateFile: getTemplateFile('styles.js.hbs'),
+      path: `${componentsPath}/{{properCase name}}/styles.js`,
+      templateFile: getTemplate('styles.js.hbs'),
       abortOnFail: true,
     }]
     return actions

@@ -1,7 +1,9 @@
 const path = require('path');
+const projects = require('./projects');
 
 const config = {
-  templatesDirectory: path.join(__dirname, '../templates/default/'),
+  templates: path.join(__dirname, '../templates/default/'),
+  projects,
 }
 
 module.exports = config;
