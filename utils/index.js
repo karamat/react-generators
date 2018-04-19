@@ -2,7 +2,8 @@
 const fs = require('fs');
 const path = require('path');
 const { each, map, filter } = require('lodash');
-const { reduxDir, containersDir } = require('../')
+const { reduxDir, containersDir } = require('../');
+const { templates, projects } = require('../config');
 
 const regex = {
   import: 'import\\s.*\\sfrom\\s.*\\n\\n',
@@ -16,6 +17,16 @@ const escapeRegex = {
   '\'': /&#x27;/g,
   '>': /&gt;/g,
 }
+
+const makeSubFolderPath = (projectPath, subDir) => {
+  const project = projects[projectPath]
+  return path.join(project.path, project[subDir]);
+}
+
+const getTemplateFile = (
+  templateFolder,
+  template
+) => path.join(templates, 'Component', template)
 
 function getFileContent(dir, file) {
   return fs.readFileSync(path.join(dir, `${file}`), 'utf8');
@@ -110,6 +121,8 @@ function getReduxStates() {
 
 module.exports = {
   regex,
+  makeSubFolderPath,
+  getTemplateFile,
   getFileContent,
   trim,
   trimFile,
