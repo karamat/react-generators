@@ -13,10 +13,7 @@ function * {{camelCase sagaName}} (api, action) {
     return resolve()
     {{/if}}
   } else {
-    let error = get(response, 'data.meta.message')
-    if (response.problem === 'NETWORK_ERROR')
-      error = 'Backend server is down.'
-    yield put(Actions.{{camelCase reduxActionName}}Failure(error))
+    yield put(Actions.{{camelCase reduxActionName}}Failure(parseError(response)))
     {{#if isPromisified}}
     return reject(error)
     {{/if}}
