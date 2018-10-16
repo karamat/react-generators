@@ -26,7 +26,7 @@ const makeSubFolderPath = (projectPath, subDir) => {
 const getTemplateFile = (
   templateFolder,
   template
-) => path.join(templates, 'Component', template)
+) => path.join(templates, templateFolder, template)
 
 function getFileContent(dir, file) {
   return fs.readFileSync(path.join(dir, `${file}`), 'utf8');
@@ -70,6 +70,7 @@ function customModify(data, args) {
 }
 
 function getReduxEntities() {
+  const reduxpath = makeSubFolderPath('default', 'reduxPath')
   if (!fs.existsSync(reduxDir))
     return []
   const files = fs.readdirSync(reduxDir);

@@ -13,6 +13,14 @@ const templateDir = path.join(__dirname, '../templates/default/ReduxAction/');
 const trimFileFunc = (file) => trimFile(templateDir, file);
 
 
+const { makeSubFolderPath, getTemplateFile } = require('../utils');
+
+const reduxPath = makeSubFolderPath('default', 'reduxPath');
+const containersPath = makeSubFolderPath('default', 'containersPath');
+const getTemplate = (template) => getTemplateFile('ReduxAction', template);
+const getContainerTemplate = (template) => getTemplateFile('Container', template);
+
+console.log(getTemplate('addAction.hbs'));
 module.exports = {
   description: 'Add a redux action',
   prompts: [{
@@ -40,20 +48,21 @@ module.exports = {
         return true
       }
       return 'The file name is required'
-    },
-  }, {
-    type: 'list',
-    name: 'containerFileName',
-    message: 'Which container file should it be added to?',
-    choices: getContainers(),
-    default: 0,
-    validate: (value) => {
-      if ((/.+/).test(value)) {
-        return true
-      }
-      return 'The file name is required'
-    },
+    }
   }],
+  // }, {
+  //   type: 'list',
+  //   name: 'containerFileName',
+  //   message: 'Which container file should it be added to?',
+  //   choices: getContainers(),
+  //   default: 0,
+  //   validate: (value) => {
+  //     if ((/.+/).test(value)) {
+  //       return true
+  //     }
+  //     return 'The file name is required'
+  //   },
+  // }],
   // }, {
   //   type: 'input',
   //   name: 'containerFileName',
@@ -62,19 +71,19 @@ module.exports = {
   actions: (data) => {
     let actions = [{
       type: 'modify',
-      path: `${reduxDir}/{{reduxFileName}}.js`,
+      path: `${reduxPath}/{{reduxFileName}}.js`,
       pattern: /(\s*\/\/\sadd action here)/g,
-      template: trimFileFunc('addAction.hbs'),
+      templateFile: getTemplate('addAction.hbs'),
     }, {
       type: 'modify',
-      path: `${reduxDir}/{{reduxFileName}}.js`,
+      path: `${reduxPath}/{{reduxFileName}}.js`,
       pattern: /(\s*\/\/\sadd new reducer here)/g,
-      template: trimFileFunc('addReducer.hbs'),
+      templateFile: getTemplate('addReducer.hbs'),
     }, {
       type: 'modify',
-      path: `${reduxDir}/{{reduxFileName}}.js`,
+      path: `${reduxPath}/{{reduxFileName}}.js`,
       pattern: /(\s*\/\/\sadd reducer hook up here)/g,
-      template: trimFileFunc('addReducerHook.hbs'),
+      templateFile: getTemplate('addReducerHook.hbs'),
     }]
 
 
@@ -82,33 +91,33 @@ module.exports = {
                             ? 'promiseActionToProps.hbs'
                             : 'actionToProps.hbs')
 
-    const containerFile = `${containersDir}/${data.containerFileName}/index.js`
-    const mapActionToProps = customModify(data, {
-      path: containerFile,
-      pattern: new RegExp(regex.mapActionToProps, 'g'),
-      template: trimFileFunc(actionTemplate),
-      dataMapping: {
-        retainPattern: 'actionPattern',
-        actionName: data.actionName,
-        actionArgs: 'payload',
-      },
-      escape: ['=', '>']
-    });
-
-    const propTypes = customModify(data, {
-      path: containerFile,
-      pattern: new RegExp(regex.propTypes, 'g'),
-      template: trimFileFunc('./propTypes.hbs'),
-      dataMapping: {
-        retainPattern: 'propTypePattern',
-        state: data.actionName,
-        propType: 'func', // or bool or array or func
-        propTypeRequired: true,
-      },
-      escape: ['=']
-    });
-    actions = actions.concat(mapActionToProps);
-    actions = actions.concat(propTypes);
+    // const containerFile = `${containersPath}/${data.containerFileName}/index.js`
+    // const mapActionToProps = customModify(data, {
+    //   path: containerFile,
+    //   pattern: new RegExp(regex.mapActionToProps, 'g'),
+    //   template: getContainerTemplate(actionTemplate),
+    //   dataMapping: {
+    //     retainPattern: 'actionPattern',
+    //     actionName: data.actionName,
+    //     actionArgs: 'payload',
+    //   },
+    //   escape: ['=', '>']
+    // });
+    //
+    // const propTypes = customModify(data, {
+    //   path: containerFile,
+    //   pattern: new RegExp(regex.propTypes, 'g'),
+    //   template: getContainerTemplate('propTypes.hbs'),
+    //   dataMapping: {
+    //     retainPattern: 'propTypePattern',
+    //     state: data.actionName,
+    //     propType: 'func', // or bool or array or func
+    //     propTypeRequired: true,
+    //   },
+    //   escape: ['=']
+    // });
+    // actions = actions.concat(mapActionToProps);
+    // actions = actions.concat(propTypes);
 
     return actions
   },

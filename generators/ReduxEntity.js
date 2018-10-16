@@ -3,13 +3,11 @@
  */
 
 'use strict';
-const fs = require('fs');
-const path = require('path');
-const { reduxDir } = require('../');
-const { trimFile } = require('../utils');
 
-const templateDir = path.join(__dirname, '../templates/default/ReduxEntity/');
-const trimFileFunc = (file) => trimFile(templateDir, file);
+const { makeSubFolderPath, getTemplateFile } = require('../utils');
+
+const reduxPath = makeSubFolderPath('default', 'reduxPath')
+const getTemplate = (template) => getTemplateFile('ReduxEntity', template);
 
 module.exports = {
   description: 'Add a redux entity',
@@ -28,34 +26,34 @@ module.exports = {
   actions: (data) => {
     const actions = [{
       type: 'add',
-      path: `${reduxDir}/{{properCase name}}Redux.js`,
-      templateFile: '../templates/default/ReduxEntity/reduxEntity.hbs',
+      path: `${reduxPath}/{{properCase name}}Redux.js`,
+      templateFile: getTemplate('reduxEntity.hbs'),
       abortOnFail: true,
     }, {
       type: 'modify',
-      path: `${reduxDir}/index.js`,
+      path: `${reduxPath}/index.js`,
       pattern: /(,\n\s+\/\/.*ADD_REDUX_REDUCER\n}\))/g,
-      template: trimFileFunc('reducer.hbs'),
+      templateFile: getTemplate('reducer.hbs'),
     }, {
       type: 'modify',
-      path: `${reduxDir}/Actions.js`,
+      path: `${reduxPath}/Actions.js`,
       pattern: /(\/\/\sADD_IMPORT)/g,
-      template: trimFileFunc('actionImport.hbs'),
+      templateFile: getTemplate('actionImport.hbs'),
     }, {
       type: 'modify',
-      path: `${reduxDir}/Actions.js`,
+      path: `${reduxPath}/Actions.js`,
       pattern: /(\/\/\sADD_ACTIONS)/g,
-      template: trimFileFunc('addActions.hbs'),
+      templateFile: getTemplate('addActions.hbs'),
     }, {
       type: 'modify',
-      path: `${reduxDir}/ActionTypes.js`,
+      path: `${reduxPath}/ActionTypes.js`,
       pattern: /(\/\/\sADD_IMPORT)/g,
-      template: trimFileFunc('actionTypeImport.hbs'),
+      templateFile: getTemplate('actionTypeImport.hbs'),
     }, {
       type: 'modify',
-      path: `${reduxDir}/ActionTypes.js`,
+      path: `${reduxPath}/ActionTypes.js`,
       pattern: /(\/\/\sADD_ACTION_TYPE)/g,
-      template: trimFileFunc('addActionTypes.hbs'),
+      templateFile: getTemplate('addActionTypes.hbs'),
     }]
     return actions
   },
