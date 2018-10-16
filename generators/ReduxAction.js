@@ -8,8 +8,8 @@ const { makeSubFolderPath, getTemplateFile } = require('../utils');
 const { customModify, regex, trimFile, getReduxEntities,
   getContainers } = require('../utils')
 
-const reduxPath = makeSubFolderPath('default', 'reduxPath');
-const containersPath = makeSubFolderPath('default', 'containersPath');
+const reduxPath = makeSubFolderPath('reduxPath');
+const containersPath = makeSubFolderPath('containersPath');
 const getTemplate = (template) => getTemplateFile('ReduxAction', template);
 const getContainerTemplate = (template) => getTemplateFile('Container', template);
 
@@ -82,7 +82,7 @@ module.exports = {
                             ? 'promiseActionToProps.hbs'
                             : 'actionToProps.hbs')
 
-    // TODO fix it, 
+    // TODO fix it,
     // const containerFile = `${containersPath}/${data.containerFileName}/index.js`
     // const mapActionToProps = customModify(data, {
     //   path: containerFile,

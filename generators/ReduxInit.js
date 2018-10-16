@@ -6,8 +6,8 @@
 
 const { makeSubFolderPath, getTemplateFile } = require('../utils');
 
-const reduxPath = makeSubFolderPath('default', 'reduxPath')
-const apiPath = makeSubFolderPath('default', 'apiPath')
+const reduxPath = makeSubFolderPath('reduxPath')
+const apiPath = makeSubFolderPath('apiPath')
 const getTemplate = (template) => getTemplateFile('ReduxInit', template);
 // const getApiTemplate = (template) => getTemplateFile('ReduxInit', template);
 

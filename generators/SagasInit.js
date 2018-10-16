@@ -5,8 +5,8 @@
 'use strict';
 const { makeSubFolderPath, getTemplateFile } = require('../utils');
 
-const sagaPath = makeSubFolderPath('default', 'sagasPath');
-const apiPath = makeSubFolderPath('default', 'apiPath');
+const sagaPath = makeSubFolderPath('sagasPath');
+const apiPath = makeSubFolderPath('apiPath');
 const getTemplate = (template) => getTemplateFile('SagasInit', template);
 
 module.exports = {
