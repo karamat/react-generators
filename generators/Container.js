@@ -6,7 +6,7 @@
 
 const { makeSubFolderPath, getTemplateFile } = require('../utils');
 
-const containersPath = makeSubFolderPath('default', 'containersPath')
+const containersPath = makeSubFolderPath('containersPath')
 const getTemplate = (template) => getTemplateFile('Container', template);
 
 module.exports = {

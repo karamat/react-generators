@@ -6,7 +6,7 @@
 
 const { makeSubFolderPath, getTemplateFile } = require('../utils');
 
-const reduxPath = makeSubFolderPath('default', 'reduxPath')
+const reduxPath = makeSubFolderPath('reduxPath')
 const getTemplate = (template) => getTemplateFile('ReduxEntity', template);
 
 module.exports = {

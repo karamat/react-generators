@@ -6,8 +6,8 @@
 const { makeSubFolderPath, getTemplateFile, getReduxStates,
   getContainers } = require('../utils');
 
-const containerPath = makeSubFolderPath('default', 'containersPath');
-const apiPath = makeSubFolderPath('default', 'apiPath');
+const containerPath = makeSubFolderPath('containersPath');
+const apiPath = makeSubFolderPath('apiPath');
 const getTemplate = (template) => getTemplateFile('StateToProps', template);
 
 module.exports = {

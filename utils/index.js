@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const { each, map, filter } = require('lodash');
-const { templates, projects } = require('../config');
+const { templates, projects, currentProject } = require('../config');
 
 const regex = {
   import: 'import\\s.*\\sfrom\\s.*\\n\\n',
@@ -17,8 +17,8 @@ const escapeRegex = {
   '>': /&gt;/g,
 }
 
-const makeSubFolderPath = (projectPath, subDir) => {
-  const project = projects[projectPath]
+const makeSubFolderPath = (subDir) => {
+  const project = projects[currentProject]
   return path.join(project.path, project[subDir]);
 }
 
@@ -69,7 +69,7 @@ function customModify(data, args) {
 }
 
 function getReduxEntities() {
-  const reduxPath = makeSubFolderPath('default', 'reduxPath')
+  const reduxPath = makeSubFolderPath('reduxPath')
   if (!fs.existsSync(reduxPath))
     return []
   const files = fs.readdirSync(reduxPath);
@@ -78,7 +78,7 @@ function getReduxEntities() {
 }
 
 function getContainers() {
-  const containerPath = makeSubFolderPath('default', 'containersPath')
+  const containerPath = makeSubFolderPath('containersPath')
   if (!fs.existsSync(containerPath))
     return []
   const files = fs.readdirSync(containerPath);
@@ -86,7 +86,7 @@ function getContainers() {
 }
 
 function getReduxStates() {
-  const reduxPath = makeSubFolderPath('default', 'reduxPath')
+  const reduxPath = makeSubFolderPath('reduxPath')
   if (!fs.existsSync(reduxPath))
     return ['state']
   const reduxFileContent = getFileContent(reduxPath, 'index.js')
