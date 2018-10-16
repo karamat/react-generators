@@ -2,7 +2,6 @@
   "name": "react_generators",
   "version": "1.0.0",
   "description": "Generators for React, Redux and Redux-saga",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate": "plop --plopfile generators/plopfile.js"
