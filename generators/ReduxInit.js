@@ -4,8 +4,12 @@
 
 'use strict';
 
-const { reduxDir, apiDir } = require('../')
+const { makeSubFolderPath, getTemplateFile } = require('../utils');
 
+const reduxPath = makeSubFolderPath('default', 'reduxPath')
+const apiPath = makeSubFolderPath('default', 'apiPath')
+const getTemplate = (template) => getTemplateFile('ReduxInit', template);
+// const getApiTemplate = (template) => getTemplateFile('ReduxInit', template);
 
 module.exports = {
   description: 'Initialize redux in the project',
@@ -13,28 +17,28 @@ module.exports = {
   actions: (data) => {
     const actions = [{
       type: 'add',
-      path: `${reduxDir}/index.js`,
-      templateFile: '../templates/default//ReduxInit/index.js.hbs',
+      path: `${reduxPath}/index.js`,
+      templateFile: getTemplate('index.js.hbs'),
       abortOnFail: true,
     }, {
       type: 'add',
-      path: `${reduxDir}/CreateStore.js`,
-      templateFile: '../templates/default//ReduxInit/CreateStore.js.hbs',
+      path: `${reduxPath}/CreateStore.js`,
+      templateFile: getTemplate('CreateStore.js.hbs'),
+      abortOnFail: true,
+    // }, {
+    //   type: 'add',
+    //   path: `${apiPath}/RehydrationServices.js`,
+    //   templateFile: getTemplate('RehydrationServices.js.hbs'),
+    //   abortOnFail: true,
+    }, {
+      type: 'add',
+      path: `${reduxPath}/ActionTypes.js`,
+      templateFile: getTemplate('ActionTypes.js.hbs'),
       abortOnFail: true,
     }, {
       type: 'add',
-      path: `${apiDir}/RehydrationServices.js`,
-      templateFile: '../templates/default//ReduxInit/RehydrationServices.js.hbs',
-      abortOnFail: true,
-    }, {
-      type: 'add',
-      path: `${reduxDir}/ActionTypes.js`,
-      templateFile: '../templates/default//ReduxInit/ActionTypes.js.hbs',
-      abortOnFail: true,
-    }, {
-      type: 'add',
-      path: `${reduxDir}/Actions.js`,
-      templateFile: '../templates/default//ReduxInit/Actions.js.hbs',
+      path: `${reduxPath}/Actions.js`,
+      templateFile: getTemplate('Actions.js.hbs'),
       abortOnFail: true,
     }]
     return actions
