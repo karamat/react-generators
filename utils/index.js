@@ -2,7 +2,6 @@
 const fs = require('fs');
 const path = require('path');
 const { each, map, filter } = require('lodash');
-const { reduxDir, containersDir } = require('../');
 const { templates, projects } = require('../config');
 
 const regex = {
@@ -70,25 +69,27 @@ function customModify(data, args) {
 }
 
 function getReduxEntities() {
-  const reduxpath = makeSubFolderPath('default', 'reduxPath')
-  if (!fs.existsSync(reduxDir))
+  const reduxPath = makeSubFolderPath('default', 'reduxPath')
+  if (!fs.existsSync(reduxPath))
     return []
-  const files = fs.readdirSync(reduxDir);
+  const files = fs.readdirSync(reduxPath);
   let filtered = filter(files, (f) => f.match(/Redux.js/))
   return map(filtered, (f) => f.replace('.js', ''))
 }
 
 function getContainers() {
-  if (!fs.existsSync(containersDir))
+  const containerPath = makeSubFolderPath('default', 'containersPath')
+  if (!fs.existsSync(containerPath))
     return []
-  const files = fs.readdirSync(containersDir);
+  const files = fs.readdirSync(containerPath);
   return map(files, (f) => f.replace('.js', ''))
 }
 
 function getReduxStates() {
-  if (!fs.existsSync(reduxDir))
+  const reduxPath = makeSubFolderPath('default', 'reduxPath')
+  if (!fs.existsSync(reduxPath))
     return ['state']
-  const reduxFileContent = getFileContent(reduxDir, 'index.js')
+  const reduxFileContent = getFileContent(reduxPath, 'index.js')
   const reducersBlockRegex = 'export\\sconst\\sreducers\\s=\\scombineReducers\\(\\{(\\n.*?)*\\}\\)'
   const reducerRegex = '.*:\\srequire\\(.*\\)\\.reducer,'
   const pattern = reduxFileContent.match(reducersBlockRegex);
@@ -109,7 +110,7 @@ function getReduxStates() {
   let finalStates = []
   const initialStateBlockRegex = 'export\\sconst\\sINITIAL_STATE\\s=\\sImmutable\\(\{(\\n.*?)*\\}\\)'
   each(reducersArr, (reducerObj) => {
-    fileContent = getFileContent(reduxDir, reducerObj.file+'.js')
+    fileContent = getFileContent(reduxPath, reducerObj.file + '.js')
     initialStateBlock = fileContent.match(initialStateBlockRegex);
     if (initialStateBlock) {
       initialState = initialStateBlock[0].replace(/export\sconst\sINITIAL_STATE\s=\sImmutable/, 'Object.keys')

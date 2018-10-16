@@ -3,9 +3,11 @@
  */
 
 'use strict';
+const { makeSubFolderPath, getTemplateFile } = require('../utils');
 
-const { sagasDir, apiDir } = require('../')
-
+const sagaPath = makeSubFolderPath('default', 'sagasPath');
+const apiPath = makeSubFolderPath('default', 'apiPath');
+const getTemplate = (template) => getTemplateFile('SagasInit', template);
 
 module.exports = {
   description: 'Initialize redux in the project',
@@ -13,23 +15,23 @@ module.exports = {
   actions: (data) => {
     const actions = [{
       type: 'add',
-      path: `${sagasDir}/index.js`,
-      templateFile: '../templates/default/SagasInit/index.js.hbs',
+      path: `${sagaPath}/index.js`,
+      templateFile: getTemplate('index.js.hbs'),
       abortOnFail: true,
     }, {
       type: 'add',
-      path: `${apiDir}/api.js`,
-      templateFile: '../templates/default/SagasInit/api.js.hbs',
+      path: `${apiPath}/api.js`,
+      templateFile: getTemplate('api.js.hbs'),
       abortOnFail: true,
     }, {
       type: 'add',
-      path: `${apiDir}/FixtureApi.js`,
-      templateFile: '../templates/default/SagasInit/FixtureApi.js.hbs',
+      path: `${apiPath}/FixtureApi.js`,
+      templateFile: getTemplate('FixtureApi.js.hbs'),
       abortOnFail: true,
     }, {
       type: 'add',
-      path: `${apiDir}/DebugConfig.js`,
-      templateFile: '../templates/default/SagasInit/DebugConfig.js.hbs',
+      path: `${apiPath}/DebugConfig.js`,
+      templateFile: getTemplate('DebugConfig.js.hbs'),
       abortOnFail: true,
     }]
     return actions

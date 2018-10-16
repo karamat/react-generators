@@ -3,24 +3,16 @@
 */
 
 'use strict';
-const fs = require('fs');
-const path = require('path');
-const { customModify, regex, trimFile, getReduxEntities,
-  getContainers } = require('../utils')
-const { reduxDir, containersDir } = require('../')
-
-const templateDir = path.join(__dirname, '../templates/default/ReduxAction/');
-const trimFileFunc = (file) => trimFile(templateDir, file);
-
 
 const { makeSubFolderPath, getTemplateFile } = require('../utils');
+const { customModify, regex, trimFile, getReduxEntities,
+  getContainers } = require('../utils')
 
 const reduxPath = makeSubFolderPath('default', 'reduxPath');
 const containersPath = makeSubFolderPath('default', 'containersPath');
 const getTemplate = (template) => getTemplateFile('ReduxAction', template);
 const getContainerTemplate = (template) => getTemplateFile('Container', template);
 
-console.log(getTemplate('addAction.hbs'));
 module.exports = {
   description: 'Add a redux action',
   prompts: [{
@@ -49,20 +41,19 @@ module.exports = {
       }
       return 'The file name is required'
     }
+  }, {
+    type: 'list',
+    name: 'containerFileName',
+    message: 'Which container file should it be added to?',
+    choices: getContainers(),
+    default: 0,
+    validate: (value) => {
+      if ((/.+/).test(value)) {
+        return true
+      }
+      return 'The file name is required'
+    },
   }],
-  // }, {
-  //   type: 'list',
-  //   name: 'containerFileName',
-  //   message: 'Which container file should it be added to?',
-  //   choices: getContainers(),
-  //   default: 0,
-  //   validate: (value) => {
-  //     if ((/.+/).test(value)) {
-  //       return true
-  //     }
-  //     return 'The file name is required'
-  //   },
-  // }],
   // }, {
   //   type: 'input',
   //   name: 'containerFileName',
@@ -91,11 +82,12 @@ module.exports = {
                             ? 'promiseActionToProps.hbs'
                             : 'actionToProps.hbs')
 
+    // TODO fix it, 
     // const containerFile = `${containersPath}/${data.containerFileName}/index.js`
     // const mapActionToProps = customModify(data, {
     //   path: containerFile,
     //   pattern: new RegExp(regex.mapActionToProps, 'g'),
-    //   template: getContainerTemplate(actionTemplate),
+    //   templateFile: getContainerTemplate(actionTemplate),
     //   dataMapping: {
     //     retainPattern: 'actionPattern',
     //     actionName: data.actionName,
@@ -107,7 +99,7 @@ module.exports = {
     // const propTypes = customModify(data, {
     //   path: containerFile,
     //   pattern: new RegExp(regex.propTypes, 'g'),
-    //   template: getContainerTemplate('propTypes.hbs'),
+    //   templateFile: getContainerTemplate('propTypes.hbs'),
     //   dataMapping: {
     //     retainPattern: 'propTypePattern',
     //     state: data.actionName,
