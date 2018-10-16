@@ -3,13 +3,11 @@
  */
 
 'use strict';
-const fs = require('fs');
-const path = require('path');
-const { trimFile } = require('../utils')
-const { sagasDir, apiDir } = require('../');
+const { makeSubFolderPath, getTemplateFile } = require('../utils');
 
-const templateDir = path.join(__dirname, '../templates/default/SagaAction/');
-const trimFileFunc = (file) => trimFile(templateDir, file);
+const sagasPath = makeSubFolderPath('default', 'sagasPath');
+const apiPath = makeSubFolderPath('default', 'apiPath');
+const getTemplate = (template) => getTemplateFile('SagasInit', template);
 
 module.exports = {
   description: 'Add a saga action',
@@ -54,29 +52,29 @@ module.exports = {
   actions: (data) => {
     const actions = [{
       type: 'modify',
-      path: `${sagasDir}/{{sagaFileName}}.js`,
+      path: `${sagasPath}/{{sagaFileName}}.js`,
       pattern: /(\/\/\sADD_SAGA_ACTION)/g,
-      template: trimFileFunc('sagaAction.hbs'),
+      templateFile: getTemplate('sagaAction.hbs'),
     }, {
       type: 'modify',
-      path: `${sagasDir}/{{sagaFileName}}.js`,
+      path: `${sagasPath}/{{sagaFileName}}.js`,
       pattern: /(\s*\/\/\sEXPORT_SAGA_ACTION)/g,
-      template: trimFileFunc('exportAction.hbs'),
+      templateFile: getTemplate('exportAction.hbs'),
     }, {
       type: 'modify',
-      path: `${sagasDir}/index.js`,
+      path: `${sagasPath}/index.js`,
       pattern: /(\s*\/\/\sREGISTRER_SAGA)/g,
-      template: trimFileFunc('registerSaga.hbs'),
+      templateFile: getTemplate('registerSaga.hbs'),
     }, {
       type: 'modify',
-      path: `${apiDir}/Api.js`,
+      path: `${apiPath}/Api.js`,
       pattern: /(\s*\/\/\sADD_API_HANDLER)/g,
-      template: trimFileFunc('apiHandler.hbs'),
+      templateFile: getTemplate('apiHandler.hbs'),
     }, {
       type: 'modify',
-      path: `${apiDir}/Api.js`,
+      path: `${apiPath}/Api.js`,
       pattern: /(\s*\/\/\sEXPORT_API_HANDLER)/g,
-      template: trimFileFunc('exportApiHandler.hbs'),
+      templateFile: getTemplate('exportApiHandler.hbs'),
     }]
     return actions
   },

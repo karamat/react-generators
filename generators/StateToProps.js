@@ -3,14 +3,12 @@
  */
 
 'use strict';
-const fs = require('fs');
-const path = require('path');
-const { customModify, regex, trimFile, getReduxStates,
-  getContainers } = require('../utils')
-const { reduxDir, containersDir } = require('../')
+const { makeSubFolderPath, getTemplateFile, getReduxStates,
+  getContainers } = require('../utils');
 
-const templateDir = path.join(__dirname, '../templates/default/StateToProps/');
-const trimFileFunc = (file) => trimFile(templateDir, file);
+const containerPath = makeSubFolderPath('default', 'containersPath');
+const apiPath = makeSubFolderPath('default', 'apiPath');
+const getTemplate = (template) => getTemplateFile('StateToProps', template);
 
 module.exports = {
   description: 'Add redux state to container props',
@@ -76,12 +74,12 @@ module.exports = {
     console.log('\n*******************************');
 
     let actions = []
-    const containerFile = `${containersDir}/${data.containerPath}/index.js`
+    const containerFile = `${containerPath}/${data.containerPath}/index.js`
 
     const mapStateToProps = customModify(data, {
       path: containerFile,
       pattern: new RegExp(regex.mapStateToProps, 'g'),
-      template: trimFileFunc('./mapStateToProps.hbs'),
+      templateFile: getTemplate('mapStateToProps.hbs'),
       dataMapping: {
         retainPattern: 'statePattern',
       },
@@ -91,7 +89,7 @@ module.exports = {
     const propTypes = customModify(data, {
       path: containerFile,
       pattern: new RegExp(regex.propTypes, 'g'),
-      template: trimFileFunc('./propTypes.hbs'),
+      templateFile: getTemplate('propTypes.hbs'),
       dataMapping: {
         retainPattern: 'propTypePattern',
         state: data.actionName,

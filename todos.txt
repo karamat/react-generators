@@ -4,3 +4,4 @@
 - fix issue with reduxEntity reducer generator
 - For a fresh project, while creating redux entity, it crashes as action and
   actionType files are not created
+- fix injecting redux action to a container and adding it in props. AddReduxAction generator

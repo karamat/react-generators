@@ -3,13 +3,10 @@
  */
 
 'use strict';
-const fs = require('fs');
-const path = require('path');
-const { sagasDir } = require('../');
-const { trimFile } = require('../utils');
+const { makeSubFolderPath, getTemplateFile } = require('../utils');
 
-const templateDir = path.join(__dirname, '../templates/default/SagaEntity/');
-const trimFileFunc = (file) => trimFile(templateDir, file);
+const sagasPath = makeSubFolderPath('default', 'sagasPath');
+const getTemplate = (template) => getTemplateFile('SagasInit', template);
 
 module.exports = {
   description: 'Add a saga entity',
@@ -28,19 +25,19 @@ module.exports = {
   actions: (data) => {
     const actions = [{
       type: 'add',
-      path: `${sagasDir}/{{properCase name}}Sagas.js`,
-      templateFile: '../templates/default/SagaEntity/sagaEntity.hbs',
+      path: `${sagasPath}/{{properCase name}}Sagas.js`,
+      templateFile: getTemplate('sagaEntity.hbs'),
       abortOnFail: true,
     }, {
       type: 'modify',
-      path: `${sagasDir}/index.js`,
+      path: `${sagasPath}/index.js`,
       pattern: /(\/\/\sIMPORT_SAGAS)/g,
-      template: trimFileFunc('importSagas.hbs'),
+      template: getTemplate('importSagas.hbs'),
     }, {
       type: 'modify',
-      path: `${sagasDir}/index.js`,
+      path: `${sagasPath}/index.js`,
       pattern: /(\/\/\sSPREAD_SAGAS)/g,
-      template: trimFileFunc('spreadSagas.hbs'),
+      template: getTemplate('spreadSagas.hbs'),
     }]
     return actions
   },
