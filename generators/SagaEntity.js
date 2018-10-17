@@ -6,7 +6,7 @@
 const { makeSubFolderPath, getTemplateFile } = require('../utils');
 
 const sagasPath = makeSubFolderPath('sagasPath');
-const getTemplate = (template) => getTemplateFile('SagasInit', template);
+const getTemplate = (template) => getTemplateFile('SagaEntity', template);
 
 module.exports = {
   description: 'Add a saga entity',

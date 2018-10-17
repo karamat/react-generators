@@ -118,7 +118,7 @@ function getReduxStates() {
       finalStates = finalStates.concat(map(states, s => `${reducerObj.key}.${s}`))
     }
   })
-  return finalStates
+  return finalStates;
 }
 
 module.exports = {
