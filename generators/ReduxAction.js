@@ -41,19 +41,20 @@ module.exports = {
       }
       return 'The file name is required'
     }
-  }, {
-    type: 'list',
-    name: 'containerFileName',
-    message: 'Which container file should it be added to?',
-    choices: getContainers(),
-    default: 0,
-    validate: (value) => {
-      if ((/.+/).test(value)) {
-        return true
-      }
-      return 'The file name is required'
-    },
   }],
+  // , {
+  //   type: 'list',
+  //   name: 'containerFileName',
+  //   message: 'Which container file should it be added to?',
+  //   choices: getContainers(),
+  //   default: null,
+  //   validate: (value) => {
+  //     if ((/.+/).test(value)) {
+  //       return true
+  //     }
+  //     return 'The file name is required'
+  //   },
+  // }],
   // }, {
   //   type: 'input',
   //   name: 'containerFileName',
