@@ -4,7 +4,7 @@
 
 'use strict';
 
-const { makeSubFolderPath, getTemplateFile } = require('../utils');
+import { makeSubFolderPath, getTemplateFile } from '../utils';
 
 const reduxPath = makeSubFolderPath('reduxPath')
 const apiPath = makeSubFolderPath('apiPath')

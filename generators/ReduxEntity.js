@@ -4,12 +4,12 @@
 
 'use strict';
 
-const { makeSubFolderPath, getTemplateFile } = require('../utils');
+import { makeSubFolderPath, getTemplateFile } from '../utils';
 
 const reduxPath = makeSubFolderPath('reduxPath')
 const getTemplate = (template) => getTemplateFile('ReduxEntity', template);
 
-module.exports = {
+export default {
   description: 'Add a redux entity',
   prompts: [{
     type: 'input',

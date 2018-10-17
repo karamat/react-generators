@@ -3,12 +3,12 @@
  */
 
 'use strict';
-const { makeSubFolderPath, getTemplateFile } = require('../utils');
+import { makeSubFolderPath, getTemplateFile } from '../utils';
 
 const sagasPath = makeSubFolderPath('sagasPath');
 const getTemplate = (template) => getTemplateFile('SagaEntity', template);
 
-module.exports = {
+export default {
   description: 'Add a saga entity',
   prompts: [{
     type: 'input',

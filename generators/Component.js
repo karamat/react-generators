@@ -4,12 +4,12 @@
 
 'use strict';
 
-const { makeSubFolderPath, getTemplateFile } = require('../utils');
+import { makeSubFolderPath, getTemplateFile } from '../utils';
 
 const componentsPath = makeSubFolderPath('componentsPath')
 const getTemplate = (template) => getTemplateFile('Component', template);
 
-module.exports = {
+export default {
   description: 'Add a component',
   prompts: [{
     type: 'input',

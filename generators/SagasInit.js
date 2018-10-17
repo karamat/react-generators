@@ -3,13 +3,13 @@
  */
 
 'use strict';
-const { makeSubFolderPath, getTemplateFile } = require('../utils');
+import { makeSubFolderPath, getTemplateFile } from '../utils';
 
 const sagaPath = makeSubFolderPath('sagasPath');
 const apiPath = makeSubFolderPath('apiPath');
 const getTemplate = (template) => getTemplateFile('SagasInit', template);
 
-module.exports = {
+export default {
   description: 'Initialize redux in the project',
   prompts: [],
   actions: (data) => {

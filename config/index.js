@@ -1,10 +1,6 @@
-const path = require('path');
-const projects = require('./projects');
+import path from 'path';
+import projects from './projects';
 
-const config = {
-  templates: path.join(__dirname, '../templates/default/'),
-  projects,
-  currentProject: 'default2',
-}
-
-module.exports = config;
+const templates = path.join(__dirname, '../templates/default/');
+export { templates, projects };
+export const currentProject = 'default';

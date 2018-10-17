@@ -1,8 +1,9 @@
 'use strict';
-const fs = require('fs');
-const path = require('path');
-const { each, map, filter } = require('lodash');
-const { templates, projects, currentProject } = require('../config');
+
+import fs from 'fs';
+import path from 'path';
+import { each, map, filter } from 'lodash';
+import { templates, projects, currentProject } from '../config';
 
 const regex = {
   import: 'import\\s.*\\sfrom\\s.*\\n\\n',
@@ -80,7 +81,7 @@ function getReduxEntities() {
 function getContainers() {
   const containerPath = makeSubFolderPath('containersPath')
   if (!fs.existsSync(containerPath))
-    return []
+    return ['']
   const files = fs.readdirSync(containerPath);
   return map(files, (f) => f.replace('.js', ''))
 }
@@ -121,7 +122,7 @@ function getReduxStates() {
   return finalStates;
 }
 
-module.exports = {
+export {
   regex,
   makeSubFolderPath,
   getTemplateFile,

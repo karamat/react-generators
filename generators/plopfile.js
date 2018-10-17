@@ -1,12 +1,12 @@
-const componentGenerator = require('./Component.js')
-const containerGenerator = require('./Container.js')
-const reduxInitGenerator = require('./ReduxInit.js')
-const reduxEntityGenerator = require('./ReduxEntity.js')
-const reduxActionGenerator = require('./ReduxAction.js')
-const sagasInitGenerator = require('./SagasInit.js')
-const sagaEntityGenerator = require('./SagaEntity.js')
-const sagaActionGenerator = require('./SagaAction.js')
-const stateToPropsGenerator = require('./StateToProps.js')
+import componentGenerator from './Component.js';
+import containerGenerator from './Container.js';
+import reduxInitGenerator from './ReduxInit.js';
+import reduxEntityGenerator from './ReduxEntity.js';
+import reduxActionGenerator from './ReduxAction.js';
+import sagasInitGenerator from './SagasInit.js';
+import sagaEntityGenerator from './SagaEntity.js';
+import sagaActionGenerator from './SagaAction.js';
+import stateToPropsGenerator from './StateToProps.js';
 
 module.exports = (plop) => {
   plop.setGenerator('component', componentGenerator)

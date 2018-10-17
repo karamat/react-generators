@@ -4,16 +4,15 @@
 
 'use strict';
 
-const { makeSubFolderPath, getTemplateFile } = require('../utils');
-const { customModify, regex, trimFile, getReduxEntities,
-  getContainers } = require('../utils')
+import { makeSubFolderPath, getTemplateFile, customModify, regex,
+  trimFile, getReduxEntities, getContainers} from '../utils';
 
 const reduxPath = makeSubFolderPath('reduxPath');
 const containersPath = makeSubFolderPath('containersPath');
 const getTemplate = (template) => getTemplateFile('ReduxAction', template);
 const getContainerTemplate = (template) => getTemplateFile('Container', template);
 
-module.exports = {
+export default {
   description: 'Add a redux action',
   prompts: [{
     type: 'input',

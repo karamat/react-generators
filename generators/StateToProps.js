@@ -10,7 +10,7 @@ const containerPath = makeSubFolderPath('containersPath');
 const apiPath = makeSubFolderPath('apiPath');
 const getTemplate = (template) => getTemplateFile('StateToProps', template);
 
-module.exports = {
+export default {
   description: 'Add redux state to container props',
   prompts: [{
     type: 'list',

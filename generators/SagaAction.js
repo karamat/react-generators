@@ -3,13 +3,13 @@
  */
 
 'use strict';
-const { makeSubFolderPath, getTemplateFile } = require('../utils');
+import { makeSubFolderPath, getTemplateFile } from '../utils';
 
 const sagasPath = makeSubFolderPath('sagasPath');
 const apiPath = makeSubFolderPath('apiPath');
 const getTemplate = (template) => getTemplateFile('SagaAction', template);
 
-module.exports = {
+export default {
   description: 'Add a saga action',
   prompts: [{
     type: 'input',

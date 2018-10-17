@@ -4,12 +4,12 @@
 
 'use strict';
 
-const { makeSubFolderPath, getTemplateFile } = require('../utils');
+import { makeSubFolderPath, getTemplateFile } from '../utils';
 
 const containersPath = makeSubFolderPath('containersPath')
 const getTemplate = (template) => getTemplateFile('Container', template);
 
-module.exports = {
+export default {
   description: 'Add a container',
   prompts: [{
     type: 'input',

@@ -1,4 +1,4 @@
- module.exports = {
+ export default {
    default1: {
      name: 'default1',
      path: '/Users/karamat/Projects/default1',
@@ -26,5 +26,4 @@
      sagasPath: 'App/Sagas',
      apiPath: 'App/Services'
    }
-
  }
