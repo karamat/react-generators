@@ -3,12 +3,10 @@
 ```
 npm install
 ```
+## Support multiple projects
 
-Change `projectPath` in `index.js` file in root directory, to your project path. For example
+You can configure multiple project at the same time with `react-generators`
 
-```
-const projectPath = '~/Projects/my-project'
-```
 
 A veriety of generators are available
 
