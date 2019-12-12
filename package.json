@@ -1,19 +1,21 @@
 {
-  "name": "react_generators",
-  "version": "1.0.0",
+  "name": "react-generators",
+  "version": "1.0.1",
   "description": "Generators for React, Redux and Redux-saga",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "plop --plopfile generators/plopfile.js"
+    "generate": "plop --plopfile index.js"
   },
   "author": "Karamat Ullah",
   "license": "ISC",
   "dependencies": {
-    "node-plop": "^0.9.0",
-    "plop": "^1.9.1"
+    "node-plop": "^0.23.0",
+    "plop": "^2.5.3"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0"
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/register": "^7.7.4"
   }
 }
