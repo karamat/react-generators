@@ -1,19 +1,22 @@
-function * {{camelCase sagaName}} (api, action) {
+function * {{camelCase sagaName}}Request (api, action) {
   {{#if isPromisified}}
   const { payload, resolve, reject } = action
   {{else}}
   const { payload } = action
   {{/if}}
-  const token = yield call(selectToken)
-  const response = yield call(api.{{camelCase reduxActionName}}, token)
-  if (response.ok) {
+  const response = yield call(api.{{camelCase reduxActionName}}, payload)
+  if (response.status == 200) {
     const data = get(response, 'data.data')
     yield put(Actions.{{camelCase reduxActionName}}Success())
     {{#if isPromisified}}
     return resolve()
     {{/if}}
+  } else if (response.status == 400) {
+    const error = response.data.message;
+    yield put(Actions.{{camelCase reduxActionName}}Failure(error))
+    return reject(error)
   } else {
-    const error = get(response, 'data.meta.message')
+    let error = get(response, 'data.meta.message')
     if (response.problem === 'NETWORK_ERROR')
       error = 'Backend server is down.'
     yield put(Actions.{{camelCase reduxActionName}}Failure(error))

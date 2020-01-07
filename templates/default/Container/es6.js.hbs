@@ -8,10 +8,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-// import get from 'lodash/get'
 import { View, ScrollView, Modal } from 'react-native'
-import { Content, Button, Text } from 'native-base'
-import { Container } from '../../../Components'
+import { Button, Text } from 'react-native-elements'
+import Images from '../../Themes/Images'
+import Colors from '../../Themes/Colors'
+import Actions from '../../Redux/Actions'
+import LoaderOverlay from '../../Components/LoaderOverlay';
 import styles from './styles'
 
 class {{ properCase name }} extends Component {
@@ -20,24 +22,13 @@ class {{ properCase name }} extends Component {
 
   render() {
     return (
-      <Container>
-        <Content>
-          <ScrollView>
-            <View style={styles.screenBody}>
-              <View style={styles.bodyTop}>
-                <Text>
-                  {{ properCase name }}
-                </Text>
-              </View>
-              <View style={styles.bodyBottom}>
-                <Button primary style={styles.nextButton}>
-                  <Text style={styles.nextButtonText}>NEXT</Text>
-                </Button>
-              </View>
-            </View>
-          </ScrollView>
-        </Content>
-      </Container>
+      <ScrollView>
+        <View>
+          <Text>
+            {{ properCase name }}
+          </Text>
+        </View>
+      </ScrollView>
     );
   }
 }
