@@ -8,9 +8,9 @@
      sagasPath: 'app/sagas',
      apiPath: 'app/services'
    },
-   default2: {
-     name: 'default2',
-     path: '/Users/karamat/Projects/default2',
+   sauniverse: {
+     name: 'sauniverse',
+     path: '/Users/sauniverse/Projects/sa-universe-app',
      componentsPath: 'App/Components',
      containersPath: 'App/Containers',
      reduxPath: 'App/Redux',
