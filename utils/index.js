@@ -29,6 +29,10 @@ const getTemplateFile = (
 ) => path.join(templates, templateFolder, template)
 
 function getFileContent(dir, file) {
+  console.log(file);
+  console.log('----------------------------');
+  
+  
   return fs.readFileSync(path.join(dir, `${file}`), 'utf8');
 }
 
@@ -92,7 +96,7 @@ function getReduxStates() {
     return ['state']
   const reduxFileContent = getFileContent(reduxPath, 'index.js')
   const reducersBlockRegex = 'export\\sconst\\sreducers\\s=\\scombineReducers\\(\\{(\\n.*?)*\\}\\)'
-  const reducerRegex = '.*:\\srequire\\(.*\\)\\.reducer,'
+  const reducerRegex = '.*:\srequire\(.*\)\.reducer,'
   const pattern = reduxFileContent.match(reducersBlockRegex);
   let reducers  = []
   if (pattern) {
@@ -104,6 +108,9 @@ function getReduxStates() {
     obj.file = r.replace(/.*\.\//, '').replace(/\'.*/g,'')
     return obj
   })
+
+  console.log(reducersArr);
+  
   let fileContent = null
   let initialStateBlock = null
   let states = null
