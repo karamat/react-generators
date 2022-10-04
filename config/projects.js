@@ -1,29 +1,38 @@
- export default {
-   default1: {
-     name: 'default1',
-     path: '/Users/karamat/Projects/default1',
-     componentsPath: 'app/components',
-     containersPath: 'app/containers',
-     reduxPath: 'app/redux',
-     sagasPath: 'app/sagas',
-     apiPath: 'app/services'
-   },
-   sauniverse: {
-     name: 'sauniverse',
-     path: '/Users/sauniverse/Projects/sa-universe-app',
-     componentsPath: 'App/Components',
-     containersPath: 'App/Containers',
-     reduxPath: 'App/Redux',
-     sagasPath: 'App/Sagas',
-     apiPath: 'App/Services'
-   },
-   default: {
-     name: 'default',
-     path: '/Users/karamat/Projects/react-generators',
-     componentsPath: 'App/Components',
-     containersPath: 'App/Containers',
-     reduxPath: 'App/Redux',
-     sagasPath: 'App/Sagas',
-     apiPath: 'App/Services'
-   }
- }
+export default {
+  default1: {
+    name: 'default1',
+    path: '/Users/karamat/Projects/default1',
+    componentsPath: 'app/components',
+    containersPath: 'app/containers',
+    reduxPath: 'app/redux',
+    sagasPath: 'app/sagas',
+    apiPath: 'app/services',
+  },
+  sauniverse: {
+    name: 'sauniverse',
+    path: '/Users/sauniverse/Projects/sa-universe-app',
+    componentsPath: 'App/Components',
+    containersPath: 'App/Containers',
+    reduxPath: 'App/Redux',
+    sagasPath: 'App/Sagas',
+    apiPath: 'App/Services',
+  },
+  default: {
+    name: 'default',
+    path: '/Users/karamat/Projects/react-generators',
+    componentsPath: 'App/Components',
+    containersPath: 'App/Containers',
+    reduxPath: 'App/Redux',
+    sagasPath: 'App/Sagas',
+    apiPath: 'App/Services',
+  },
+  FoodGorilla: {
+    name: 'FoodGorilla',
+    path: '/Users/karamat/Projects/food-gorilla-app',
+    componentsPath: 'src/components',
+    containersPath: 'src/routes',
+    reduxPath: 'src/redux',
+    sagasPath: 'src/sagas',
+    apiPath: 'src/services',
+  },
+};

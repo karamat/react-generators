@@ -1,6 +1,7 @@
 import path from 'path';
 import projects from './projects';
 
-const templates = path.join(__dirname, '../templates/default/');
+export const currentProject = 'FoodGorilla';
+
+const templates = path.join(__dirname, `../templates/${currentProject}/`);
 export { templates, projects };
-export const currentProject = 'sauniverse';

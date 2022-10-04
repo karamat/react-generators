@@ -26,13 +26,13 @@ export default {
   actions: (data) => {
     const actions = [{
       type: 'add',
-      path: `${componentsPath}/{{properCase name}}/index.js`,
-      templateFile: getTemplate('es6.js.hbs'),
+      path: `${componentsPath}/{{properCase name}}/index.tsx`,
+      templateFile: getTemplate('index.tsx.hbs'),
       abortOnFail: true,
     }, {
       type: 'add',
-      path: `${componentsPath}/{{properCase name}}/styles.js`,
-      templateFile: getTemplate('styles.js.hbs'),
+      path: `${componentsPath}/{{properCase name}}/{{properCase name}}.module.scss`,
+      templateFile: getTemplate('styles.scss.hbs'),
       abortOnFail: true,
     }]
     return actions
